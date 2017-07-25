@@ -11,6 +11,11 @@ class Dealer:
         self.winners = []
         self.money = money
 
+    def update_players(self, player_list):
+        self.players = []
+        for player in player_list:
+            self.players.append(player)
+
     def deal_hand(self):
         for player in self.players:
             for card in range(2):
@@ -26,10 +31,21 @@ class Dealer:
     def self_deal(self):
         self.hit(self)
 
-    def play_own_hand(self, player):
-        """ Will need to be adjusted once more players are added. """
-        while self.card_value < player.card_value:
-            self.self_deal()
+    def play_own_hand(self):
+        if self.find_lowest() < 17:
+            while self.card_value < 17:
+                self.self_deal()
+        else:
+            while self.card_value < self.find_lowest():
+                self.self_deal()
+
+    def find_lowest(self):
+        lowest = min([player.card_value for player in self.players])
+
+        if lowest > 21:
+            return 0
+        else:
+            return lowest
 
     def pay_winners(self):
         """ This will be deducted from the dealers bank roll in the future. """
@@ -46,3 +62,7 @@ class Dealer:
         self.deck.reset_deck()
         self.cards, self.winners = [], []
         self.card_value = 0
+
+
+    def display_cards(self):
+        print('{} at {}'.format(self.cards, self.card_value))

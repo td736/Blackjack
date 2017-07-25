@@ -1,14 +1,11 @@
 class Player:
 
-    def __init__(self, money=1000, name='Null'):
+    def __init__(self, name, money=1000):
         self.money = money
         self.cards = []
         self.card_value = 0
         self.name = name
         self.money_bet = 0
-
-    def receive_money(self):
-        pass
 
     def bet(self, amount):
         amount = int(amount)
