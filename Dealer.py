@@ -18,10 +18,15 @@ class Dealer:
 
     def deal_hand(self):
         for player in self.players:
-            for card in range(2):
-                card = self.deck.draw_card()
-                player.cards.append(card[0])
-                player.card_value += card[1]
+
+            card = self.deck.draw_card()
+            card1 = self.deck.draw_card()
+
+            player.cards.append(card[0])
+            player.card_value += card[1]
+
+            player.cards.append(card1[0])
+            player.card_value += card1[1]
 
     def hit(self, player):
         card = self.deck.draw_card()

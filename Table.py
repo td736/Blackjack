@@ -11,7 +11,7 @@ class Table:
     def add_player(self):
         name = input("Name: ")
         buy_in = input("Buy-in: ")
-        self.player_list.append(Player(name, buy_in))
+        self.player_list.append(Player(name, int(buy_in)))
 
     def remove_player(self, name):
         for player in self.player_list:
@@ -66,4 +66,7 @@ class Table:
                 elif player.card_value < self.dealer.card_value <= 21:
                     print("{} lost ${}.".format(player.name, player.money_bet))
 
+        print("Dealers cards are:")
+        self.dealer.display_cards()
         self.dealer.pay_winners()
+
